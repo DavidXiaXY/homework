@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+	</head>
+
+	<body onload="clockon();">
+		登录时间：
+		<div id="bgclockshade"></div>
+		上网时长：
+		<div id="jishi"></div>
+		
+		<script type="text/javascript">
+
+			var s = new Date();
+
+			function clockon() {
+				var thistime = new Date();
+
+				diff = new Date();
+				diff.setTime(Math.abs(thistime.getTime() - s.getTime()));
+				timediff = diff.getTime();
+				hos = Math.floor(timediff / (1000 * 60 * 60));
+				mins = Math.floor(timediff / (1000 * 60));
+				secs = Math.floor(timediff / 1000);
+
+				var hours = thistime.getHours();
+				var minutes = thistime.getMinutes();
+				var seconds = thistime.getSeconds();
+
+				if(eval(hours) < 10) {
+					hours = "0" + hours;
+				}
+				if(eval(minutes) < 10) {
+					minutes = "0" + minutes;
+				}
+				if(seconds < 10) {
+					seconds = "0" + seconds;
+				}
+				thistime = hours + ":" + minutes + ":" + seconds;
+				bgclockshade.innerHTML = thistime 
+				if(secs > 59) {
+					secs = secs % 60;
+				}
+				if(mins > 59) {
+					mins = mins % 60;
+				}
+				if(eval(secs) < 10) {
+					secs = "0" + secs;
+				}
+				if(eval(mins) < 10) {
+					mins = "0" + mins;
+				}
+				if(eval(hos) < 10) {
+					hos = "0" + hos;
+				}
+				jishi.innerHTML = hos + ":" + mins + ":" + secs;
+				var timer = setTimeout("clockon()", 200);
+			}
+		</script>
+	</body>
+
+</html>
