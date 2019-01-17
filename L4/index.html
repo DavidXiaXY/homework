@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<canvas id="clock" width="200" height="200" style="margin-left: 35%;margin-top: 150px;"></canvas>
+		<script type="text/javascript">
+			
+			
+			
+			window.onload = function() {
+				var nowTime = document.getElementById("nowTime");
+				setInterval("getTimeNow()", 1000);
+			}
+			
+			
+			window.onload = function() {
+				var clock = document.getElementById("clock").getContext('2d'); //通过获取canvas元素获取2d上下文
+				var width = clock.canvas.width; //得到画布的宽度
+				var height = clock.canvas.height; //得到花布的高度
+				var r = width / 2; //得到将要画的时钟的半径
+				var prop = width / 150; //在此保留比例，以便于在更换画布大小时调节
+				function outline() {
+					clock.save(); //保存当前状态
+					clock.translate(r, r); //将原点移动到(r,r)处
+					clock.beginPath(); //每个函数内部都要有beginPath()方法
+					clock.lineWidth = 3 * prop; //通过lineWidth来设置划线的宽度，注意这里没有单位
+					clock.arc(0, 0, r - clock.lineWidth / 2, 0, 2 * Math.PI, false);
+					clock.stroke(); //绘制路径
+					var scaleNumbers = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2];
+					clock.font = 12 * prop + "px Arial"; //通过font来设置字体的大小。关键：一定单位px，且后面一定要有字体样式
+					clock.textAlign = "center"; //设置位水平居中
+					clock.textBaseline = "middle"; //设置位垂直居中
+
+					scaleNumbers.forEach(function(number, i) { //遍历数组
+						var rad = 2 * Math.PI / 12 * i;
+						var x = Math.cos(rad) * (r - 15 * prop);
+						var y = Math.sin(rad) * (r - 15 * prop);
+						clock.fillText(number, x, y); //在x y处绘制number
+					});
+					for(var i = 0; i <= 60; i++) {
+						var rad = 2 * Math.PI / 60 * i;
+						var x = Math.cos(rad) * (r - 7 * prop);
+						var y = Math.sin(rad) * (r - 7 * prop);
+						clock.beginPath();
+						if(i % 5 === 0) {
+							clock.fillStyle = "red"; //填充的颜色
+							clock.arc(x, y, 1 * prop, 0, 2 * Math.PI, false);
+						} else {
+							clock.fillStyle = "black";
+							clock.arc(x, y, 1 * prop, 0, 2 * Math.PI, false);
+
+						}
+						clock.fill();
+					}
+				}
+
+				function hours(hour, minute) {
+					clock.save(); //一定要先保存
+					clock.beginPath();
+					var rad = 2 * Math.PI / 12 * hour;
+					var minute_rad = 2 * Math.PI / 12 / 60 * minute;
+					clock.rotate(rad + minute_rad);
+					clock.strokeStyle = "blue";
+					clock.lineCap = "round";
+					clock.lineWidth = 5 * prop;
+					clock.moveTo(0, 2 * prop);
+					clock.lineTo(0, -r + 40 * prop);
+					clock.stroke();
+					clock.restore(); //恢复
+				}
+
+				function minutes(minute) {
+					clock.save();
+					clock.beginPath();
+					clock.strokeStyle = "orange"; //设置路径的颜色
+					clock.lineWidth = 4 * prop;
+					clock.lineCap = "round"; //设置线的样式
+					var rad = 2 * Math.PI / 60 * minute;
+					clock.rotate(rad); //旋转画布
+					clock.moveTo(0, 5 * prop); //将“画笔”移动到（这里没有绘画）
+					clock.lineTo(0, -r + 25 * prop);
+					clock.stroke();
+					clock.restore();
+				}
+
+				function seconds(second) {
+					clock.save();
+					clock.beginPath();
+					clock.fillStyle = "red";
+					var rad = 2 * Math.PI / 60 * second;
+					clock.rotate(rad);
+					clock.moveTo(-2 * prop, 5 * prop);
+					clock.lineTo(2 * prop, 5 * prop);
+					clock.lineTo(1 * prop, -r + 18 * prop);
+					clock.lineTo(3 * prop, -r + 18 * prop);
+					clock.lineTo(0, -r + 10 * prop);
+					clock.lineTo(-3 * prop, -r + 18 * prop);
+					clock.lineTo(-1 * prop, -r + 18 * prop);
+					clock.fill();
+					clock.restore();
+				}
+
+				function middle_dot() {
+					clock.beginPath();
+					clock.fillStyle = "white";
+					clock.arc(0, 0, 5 * prop, 0, 2 * Math.PI, false);
+					clock.fill();
+				}
+
+				function all() {
+					clock.clearRect(0, 0, width, height);
+					outline();
+					middle_dot();
+					var now = new Date(); //通过Date对象获取时间
+					var hour = now.getHours(); //获取当前小时数
+					var minute = now.getMinutes();
+					var second = now.getSeconds();
+					hours(hour, minute);
+					minutes(minute);
+					seconds(second);
+					clock.restore();
+				}
+				all();
+				setInterval(all, 1000); //使用定时器不断更新时间
+
+			};
+		</script>
+	</body>
+
+</html>
