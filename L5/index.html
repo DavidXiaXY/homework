@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			1. 利用百度echart.js 做一个图表
+			
+			2. 12个月销量统计 柱形图 （看出业绩的高低）
+			
+			3. 做一个6个产品业绩分布 饼形图（看出所在比例）
+			
+			4. 做上一个月每天业绩的折线图（看出趋势）
+		-->
+		
+		
+		<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<!-- https://echarts.baidu.com/examples -->
+		<!-- https://echarts.baidu.com/tutorial.html  -->
+		<div id="main" style="width: 1200px;height:400px;margin: 0 auto;"></div>
+		<div id="main2" style="width: 1200px;height:400px;margin-top: 150px;margin: 0 auto;"></div>
+		<div id="main3" style="width: 1200px;height:400px;margin-top: 150px;margin: 0 auto;"></div>
+		<script type="text/javascript" src="js/echarts-en.common.js"></script>
+		<script type="text/javascript">
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('main'));
+			var myChart2 = echarts.init(document.getElementById('main2'));
+			var myChart3 = echarts.init(document.getElementById('main3'));
+
+			// 指定图表的配置项和数据
+			var option = {
+				title: {
+					text: '12个月销量统计',
+					left: 'center',
+					top: 20,
+				},
+				tooltip: {},
+				legend: {
+					data: ['销量'],
+					left: 'right',
+				},
+				xAxis: {
+					data: ["一月", "二月", "三月", "四月", "五月", "六月","七月","八月","九月","十月","十一月","十二月",]
+				},
+				yAxis: {
+					nameRotate: 20
+				},
+				series: [{
+					name: '销量',
+					type: 'bar',
+					data: [5, 20, 36, 10, 10, 20,5, 20, 36, 10, 10, 20]
+				}]
+			};
+			
+			myChart.setOption(option);
+
+            var option2 = {
+				backgroundColor: '#2c343c',
+
+				title: {
+					text: '6个产品业绩分布',
+					left: 'center',
+					top: 20,
+					textStyle: {
+						color: '#ccc'
+					}
+				},
+
+				tooltip: {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+
+				visualMap: {
+					show: false,
+					min: 80,
+					max: 600,
+					inRange: {
+						colorLightness: [0, 1]
+					}
+				},
+				series: [{
+					name: '访问来源',
+					type: 'pie',
+					radius: '55%',
+					center: ['50%', '50%'],
+					data: [{
+							value: 335,
+							name: '华为 nova 4'
+						},
+						{
+							value: 310,
+							name: 'vivo NEX双屏版'
+						},
+						{
+							value: 274,
+							name: 'HUAWEI MATE20'
+						},
+						{
+							value: 374,
+							name: 'OPPO R17 Pro'
+						},
+						{
+							value: 235,
+							name: '一加6T'
+						},
+						{
+							value: 400,
+							name: '荣耀 V20'
+						}
+					].sort(function(a, b) {
+						return a.value - b.value;
+					}),
+					roseType: 'radius',
+					label: {
+						normal: {
+							textStyle: {
+								color: 'rgba(255, 255, 255, 0.3)'
+							}
+						}
+					},
+					labelLine: {
+						normal: {
+							lineStyle: {
+								color: 'rgba(255, 255, 255, 0.3)'
+							},
+							smooth: 0.2,
+							length: 10,
+							length2: 20
+						}
+					},
+					itemStyle: {
+						normal: {
+							color: '#c23531',
+							shadowBlur: 200,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					},
+
+					animationType: 'scale',
+					animationEasing: 'elasticOut',
+					animationDelay: function(idx) {
+						return Math.random() * 200;
+					}
+				}]
+			};
+
+            myChart2.setOption(option2);
+
+            var option3 = {
+            	title: {
+					text: '上一个月每天业绩',
+					left: 'center',
+					top: 20,
+					textStyle: {
+						color: '#000'
+					}
+				},
+				xAxis: {
+					type: 'category',
+					data: ['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12', '13', '14','15', '16', '17', '18', '19', '20', '21','22', '23', '24', '25', '26', '27', '28','29', '30']
+				},
+				yAxis: {
+					type: 'value'
+				},
+				series: [{
+					data: [20000, 30000, 40000, 60000, 80000, 30000, 70000,40000,100000,20000,20000, 30000, 40000, 60000, 80000, 30000, 70000,40000,100000,20000,20000, 30000, 40000, 60000, 80000, 30000, 70000,40000,100000,20000],
+					type: 'line',
+					smooth: true
+				}]
+			};
+			
+			myChart3.setOption(option3);
+			
+		</script>
+	</body>
+
+</html>
+	</body>
+</html>
