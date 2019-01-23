@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style type="text/css">
+			html {
+				/*
+				 *  在设计稿宽度是750px像素时：1rem = 100px;
+				 * */
+				font-size: calc(100vw/7.5);
+			}
+			
+			body {
+				margin: 0px;
+				font-size: 0.32rem;
+			}
+			
+			.search-top {
+				width: 100%;
+				height: 1.04rem;
+				background-color: #e43130;
+			}
+			
+			.search-top>div {
+				float: left;
+			}
+			
+			.search-top .menu {
+				height: inherit;
+				width: 1.18rem;
+				background-color: #e43130;
+				text-align: center;
+				line-height: 4.24em;
+			}
+			
+			.search-top .menu img {
+				width: 50%;
+			}
+			
+			.search-top .login {
+				height: inherit;
+				width: 1.18rem;
+				background-color: #e43130;
+				font-family: "微软雅黑";
+				line-height: 3.04em;
+				color: white;
+				text-align: center;
+			}
+			
+			.search-top .input-form {
+				width: 5.14rem;
+				padding-top: 0.17rem;
+				position: relative;
+			}
+			
+			.jd-logo img{
+				position: absolute;
+				left: 1.5em;
+				top: 1.0em;
+				width: 1.5em;
+				padding-right: 0.1em;
+			}
+			
+			.search-top .input-form input {
+				width: inherit;
+				height: 0.7rem;
+				border-radius: 0.35rem;
+				border: solid 1px gray;
+				box-sizing: border-box;
+				padding-left: 6.5em;
+				font-size: 1.1em;
+				font-family: "微软雅黑";
+				color: gray;
+			}
+			
+			.search-logo {
+				display: block;
+				left: 4.2em;
+				top: 1.0em;
+				position: absolute;
+				width: 12em;
+			}
+			.search-logo img{
+				width: 1.2em;
+			}
+			
+			.commonNav {
+				background-color: rgb(213, 20, 51);
+				width: 100%;
+				height: 1.04rem;
+				position: fixed;
+				bottom: 0;
+				z-index: 1;
+			}
+			
+			.commonNav img {
+				width: 4em;
+				margin-top: 0.15em;
+				margin-right: 0.42em;
+				margin-left: 0.01em;
+			}
+			
+			.box_list a {
+				text-align: center;
+				width: 20%;
+				float: left;
+			}
+			
+			.box_list img{
+				margin-top: .3rem;
+				width: 55%;
+			}
+			
+			.box_list span {
+				display: block;
+				margin-top: .1rem;
+				font-size: .2rem;
+				color: #666;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="search-top">
+
+			<div class="menu"><img src="img/tubiao.png"></div>
+			<div class="input-form">
+				<div class="jd-logo"><img src="img/JD.png" /></div>
+				<div class="search-logo"><img src="img/jd-sprites.png"></div>
+				<input type="text" name="" id="" value="卸妆水" />
+			</div>
+			<div class="login">登录</div>
+		</div>
+
+		<div class="box_list">
+			<a>
+				<img src="img/gou.png" />
+				<span>京东超市</span>
+			</a>
+			<a>
+				<img src="img/wu.png" />
+				<span>海囤全球</span>
+			</a>
+			<a>
+				<img src="img/xian.png" />
+				<span>京东服饰</span>
+			</a>
+			<a>
+				<img src="img/ling.png" />
+				<span>京东生鲜</span>
+			</a>
+			<a>
+				<img src="img/juan.png" />
+				<span>京东到家</span>
+			</a>
+			<a>
+				<img src="img/you.png" />
+				<span>充值缴费</span>
+			</a>
+			<a>
+				<img src="img/hui.png" />
+				<span>9.9元拼</span>
+			</a>
+			<a>
+				<img src="img/kan.png" />
+				<span>领券</span>
+			</a>
+			<a>
+				<img src="img/de.png" />
+				<span>赚钱</span>
+			</a>
+			<a>
+				<img src="img/jian.png" />
+				<span>全部</span>
+			</a>
+		</div>
+
+		<div class="commonNav">
+			<img src="img/shouye.png" />
+			<img src="img/fenlei.png" />
+			<img src="img/pinggou.png" />
+			<img src="img/gouwuche.png" />
+			<img src="img/weidenglu.png" />
+		</div>
+
+	</body>
+
+</html>
